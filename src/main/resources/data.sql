@@ -8,7 +8,8 @@ INSERT INTO veterinario (nombre, matricula, email) VALUES ('Dr. Maxi', 'ASD423',
 INSERT INTO vacuna (nombre, fecha_vencimiento) VALUES ('Vacuna contra la rabia', '2026-01-10');
 INSERT INTO vacuna (nombre, fecha_vencimiento) VALUES ('Vacuna contra COVID-19', '2025-01-10');
 INSERT INTO vacuna (nombre, fecha_vencimiento) VALUES ('Vacuna Quintuple', '2025-01-11');
-INSERT INTO vacuna (nombre, fecha_vencimiento) VALUES ('vacuna parvoviruse', '2025-04-10');
+INSERT INTO vacuna (nombre, fecha_vencimiento) VALUES ('Vacuna parvoviruse', '2025-04-10');
+INSERT INTO vacuna (nombre, fecha_vencimiento) VALUES ('Vacuna moquillo', '2024-06-11');
 
 -- Inserción de mascotas de ejemplo:
 INSERT INTO mascota (nombre, especie, fecha_nacimiento, sexo, veterinario_id) VALUES ('Leonidas', 'Planta carnivora', '2023-01-10', 'Macho', 4);
