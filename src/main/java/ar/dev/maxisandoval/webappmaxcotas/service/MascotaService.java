@@ -41,6 +41,17 @@ public class MascotaService {
         return mascotaRepository.save(mascota);
     }
 
+    public void eliminarMascota(Long id){
+        Optional<Mascota> mascotaOptional = mascotaRepository.findById(id);
+
+        if (mascotaOptional.isPresent()){
+            mascotaRepository.delete(mascotaOptional.get());
+        }
+        else {
+            throw new RuntimeException("Mascota no encontrada al momento de la eliminacion");
+        }
+    }
+
     public void actualizarMascota (Long idMascota, Mascota mascotaActualizada, Long idVeterinario, List<Long> idVacunas) {
         Optional<Mascota> mascotaOptional = mascotaRepository.findById(idMascota);
 
