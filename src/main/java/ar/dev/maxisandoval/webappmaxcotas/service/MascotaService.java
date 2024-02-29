@@ -7,7 +7,6 @@ import ar.dev.maxisandoval.webappmaxcotas.repository.VacunaRepository;
 import ar.dev.maxisandoval.webappmaxcotas.repository.VeterinarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -42,14 +41,7 @@ public class MascotaService {
     }
 
     public void eliminarMascota(Long id){
-        Optional<Mascota> mascotaOptional = mascotaRepository.findById(id);
-
-        if (mascotaOptional.isPresent()){
-            mascotaRepository.delete(mascotaOptional.get());
-        }
-        else {
-            throw new RuntimeException("Mascota no encontrada al momento de la eliminacion");
-        }
+        mascotaRepository.deleteById(id);
     }
 
     public void actualizarMascota (Long idMascota, Mascota mascotaActualizada, Long idVeterinario, List<Long> idVacunas) {
