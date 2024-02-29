@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-class VeterinarioTest {
+class VeterinarioServiceTest {
 
     @Autowired
     private VeterinarioService veterinarioService;
