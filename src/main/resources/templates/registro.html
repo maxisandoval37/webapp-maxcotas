@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/headerNoLogin}"></head>
+<body class="container mt-5">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="mb-4">Registro de Usuario</h2>
+
+            <form th:action="@{/registro}" method="post" th:object="${usuario}" class="mb-4">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" th:field="*{username}" class="form-control" required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" th:field="*{nombre}" class="form-control" required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" th:field="*{apellido}" class="form-control" required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" name="contrasena" th:field="*{contrasena}" class="form-control" required/>
+                </div>
+
+                <br>
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+            </form>
+
+            <p>¿Ya tenes una cuenta? <a th:href="@{/login}">Click aquí</a></p>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

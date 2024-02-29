@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{fragments/header}"></head>
+<body class="container mt-5">
+
+<h2>Lista de Mascotas</h2>
+
+<!-- Agregamos botones para agregar dueños y mascotas -->
+<div class="mb-3">
+    <a th:href="@{/agregarVeterinario}" class="btn btn-primary">Agregar Veterinario</a>
+    <a th:href="@{/agregarVacuna}" class="btn btn-primary">Agregar Vacunas</a>
+    <a th:href="@{/agregarMascota}" class="btn btn-primary">Agregar Mascota</a>
+</div>
+
+<table class="table table-bordered">
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Especie</th>
+        <th>Fecha Nac.</th>
+        <th>Sexo</th>
+        <th>Veterinario</th>
+        <th>Vacunas</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="mascota : ${mascotas}">
+        <td th:text="${mascota.id}"></td>
+        <td th:text="${mascota.nombre}"></td>
+        <td th:text="${mascota.especie}"></td>
+        <td th:text="${mascota.fechaNacimiento}"></td>
+        <td th:text="${mascota.sexo}"></td>
+        <td th:text="${mascota.veterinario.nombre}"></td>
+        <td>
+            <ul>
+                <li th:each="vacuna : ${mascota.vacunasAplicadas}" th:text="${vacuna.nombre}"></li>
+            </ul>
+        </td>
+        <!-- Botones de eliminar y actualizar mascota -->
+        <td>
+            <a th:href="@{/eliminarMascota/{id}(id=${mascota.id})}" class="btn btn-danger">Eliminar</a>
+            <a th:href="@{/actualizarMascota/{id}(id=${mascota.id})}" class="btn btn-warning">Actualizar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

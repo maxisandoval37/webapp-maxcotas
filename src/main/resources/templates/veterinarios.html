@@ -1,1 +1,40 @@
-<h1>HOLA MUNDO! :D</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{fragments/header}"></head>
+<body class="container mt-5">
+
+<h2>Lista de Veterinarios</h2>
+
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Matrícula</th>
+        <th>Email</th>
+        <th>Mascotas</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="veterinario : ${veterinarios}">
+        <td th:text="${veterinario.id}"></td>
+        <td th:text="${veterinario.nombre}"></td>
+        <td th:text="${veterinario.matricula}"></td>
+        <td th:text="${veterinario.email}"></td>
+        <td>
+            <label>
+                <select disabled size="5"  style="max-height: 75px; overflow-y: auto;">
+                    <option th:each="mascota : ${veterinario.mascotasAtendidas}" th:value="${mascota.id}" th:text="${mascota.nombre}"></option>
+                </select>
+            </label>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Enlace para regresar a la lista de mascotas -->
+<a th:href="@{/mascotas}" class="btn btn-secondary">Ver Lista de Mascotas</a>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

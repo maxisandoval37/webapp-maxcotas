@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{fragments/header}"></head>
+<body class="container mt-5">
+
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Error</h2>
+        <p class="card-text">Ocurrió un error inesperado. Por favor, inténtalo de nuevo más tarde:</p>
+        <br>
+        <div th:if="${error}" th:text="${error}" style="color: gray"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

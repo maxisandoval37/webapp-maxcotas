@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{fragments/header}"></head>
+<body class="container mt-5">
+
+<h2>Agregar Veterinario</h2>
+
+<form th:action="@{/guardarVeterinario}" method="post" th:object="${veterinario}" class="form">
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="matricula">Matrícula:</label>
+        <input type="text" class="form-control" id="matricula" name="matricula" th:field="*{matricula}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" th:field="*{email}" required>
+    </div>
+
+    <br>
+    <button type="submit" class="btn btn-primary">Guardar Veterinario</button>
+</form>
+
+<hr>
+
+<a th:href="@{/veterinarios}" class="btn btn-secondary">Ver Lista de Veterinarios</a>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>
