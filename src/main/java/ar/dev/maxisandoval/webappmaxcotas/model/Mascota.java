@@ -44,5 +44,6 @@ public class Mascota {
     @JoinTable(name = "Mascota_Vacuna",
         joinColumns = @JoinColumn(name = "mascota_id"),
         inverseJoinColumns = @JoinColumn(name = "vacuna_id"))
+    @Builder.Default
     private List<Vacuna> vacunasAplicadas = new ArrayList<>();
 }
