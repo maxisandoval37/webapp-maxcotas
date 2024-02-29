@@ -18,11 +18,6 @@ public class MascotaViewController {
     private final VeterinarioService veterinarioService;
     private final VacunaService vacunaService;
 
-    @GetMapping("/")
-    public String redireccionarPaginaPrincipal () {
-        return "redirect:/mascotas";
-    }
-
     @GetMapping("/mascotas")
     public String listarMascotas(Model model) {
         List<Mascota> mascotas = mascotaService.listarMascotas();
