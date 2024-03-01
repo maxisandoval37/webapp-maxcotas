@@ -1,10 +1,17 @@
 package ar.dev.maxisandoval.webappmaxcotas.controller;
 
 import ar.dev.maxisandoval.webappmaxcotas.model.Mascota;
+import ar.dev.maxisandoval.webappmaxcotas.model.Veterinario;
+import ar.dev.maxisandoval.webappmaxcotas.repository.UsuarioRepository;
 import ar.dev.maxisandoval.webappmaxcotas.service.MascotaService;
 import ar.dev.maxisandoval.webappmaxcotas.service.VacunaService;
 import ar.dev.maxisandoval.webappmaxcotas.service.VeterinarioService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,18 +19,41 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
+@Slf4j
 public class MascotaViewController {
 
     private final MascotaService mascotaService;
     private final VeterinarioService veterinarioService;
     private final VacunaService vacunaService;
+    private final UsuarioRepository usuarioRepository;
 
     @GetMapping("/mascotas")
     public String listarMascotas(Model model) {
-        List<Mascota> mascotas = mascotaService.listarMascotas();
-        model.addAttribute("mascotas", mascotas);
+        List<Mascota> mascotas;
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        mostrarRolesUsuarioActual(authentication);
+
+        Veterinario veterinario = usuarioRepository.findByUsername(username).getVeterinario();
+
+        if (veterinario != null) {
+            mascotas = veterinario.getMascotasAtendidas();
+        }
+        else {
+            mascotas = mascotaService.listarMascotas();
+        }
+
+        model.addAttribute("mascotas", mascotas);
         return "mascotas";
+    }
+
+    private void mostrarRolesUsuarioActual (Authentication authentication){
+        for (GrantedAuthority authority : authentication.getAuthorities()) {
+            String rol = authority.getAuthority();
+            log.info("Rol actual: "+rol);
+        }
     }
 
     @GetMapping("/agregarMascota")

@@ -30,4 +30,4 @@ INSERT INTO mascota_vacuna (mascota_id, vacuna_id) VALUES (2,4);
 INSERT INTO Usuario (username, contrasena, rol, nombre, apellido) VALUES ('admin', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq', 'ROL_ADMIN', 'José', 'Pérez');
 INSERT INTO Usuario (username, contrasena, rol, nombre, apellido) VALUES ('user', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq','ROL_LECTURA', 'María', 'Gómez');
 INSERT INTO Usuario (username, contrasena, rol, nombre, apellido) VALUES ('lectura', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq','ROL_LECTURA', 'Carlos', 'López');
-INSERT INTO Usuario (username, contrasena, rol, nombre, apellido, veterinario_id) VALUES ('veterinario_juan', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq','ROL_VETERINARIO', 'Juan', 'Pérez', 1);
+INSERT INTO Usuario (username, contrasena, rol, nombre, apellido, veterinario_id) VALUES ('veterinario_juan', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq','ROL_VETERINARIO', 'Juan', 'Pérez', 3);
