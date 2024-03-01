@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:insert="~{fragments/header}"></head>
 <body class="container mt-5">
 
@@ -14,6 +14,13 @@
 
 <table class="table table-bordered">
 
+    USUARIO AUTENTICADO:
+    <div sec:authentication="principal.username"></div>
+    <br>
+    ROLES DEL USUARIO ATENTICADO:
+    <div sec:authentication="principal.authorities"></div>
+    <br>
+
     <thead>
     <tr>
         <th>ID</th>
@@ -23,7 +30,7 @@
         <th>Sexo</th>
         <th>Veterinario</th>
         <th>Vacunas</th>
-        <th>Acciones</th>
+        <th sec:authorize="hasAuthority('ROL_ADMIN')">Acciones</th>
     </tr>
     </thead>
     <tbody>
@@ -40,7 +47,7 @@
             </ul>
         </td>
         <!-- Botones de eliminar y actualizar mascota -->
-        <td>
+        <td sec:authorize="hasAuthority('ROL_ADMIN')">
             <a th:href="@{/eliminarMascota/{id}(id=${mascota.id})}" class="btn btn-danger">Eliminar</a>
             <a th:href="@{/actualizarMascota/{id}(id=${mascota.id})}" class="btn btn-warning">Actualizar</a>
         </td>
