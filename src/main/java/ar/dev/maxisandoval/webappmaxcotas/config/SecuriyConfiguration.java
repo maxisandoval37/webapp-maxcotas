@@ -23,6 +23,7 @@ public class SecuriyConfiguration {
         http.userDetailsService(userDetailsService)
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/", "/registro").permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/gestorRoles")).hasAuthority("ROL_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
