@@ -17,6 +17,7 @@ Este proyecto es una aplicación web Java desarrollada con el framework **Spring
 - **SQL**
 - **Spring Boot Starter Thymeleaf:** Integración con el motor de plantillas y utilización de **fragmentos**. Acompañado de **HTML5**, **CSS** y **JS**.
 - **Bootstrap 5**
+- **Sweet Alert 2**
 - **Spring Boot Starter Validation**
 - **Hibernate Validator**
 - **Lombok**
