@@ -48,7 +48,7 @@
         </td>
         <!-- Botones de eliminar y actualizar mascota -->
         <td sec:authorize="hasAuthority('ROL_ADMIN')">
-            <a th:href="@{/eliminarMascota/{id}(id=${mascota.id})}" class="btn btn-danger">Eliminar</a>
+            <button th:onclick="'eliminarMascotaConfirmacion(\'' + ${mascota.id} + '\');'" class="btn btn-danger">Eliminar</button>
             <a th:href="@{/actualizarMascota/{id}(id=${mascota.id})}" class="btn btn-warning">Actualizar</a>
         </td>
     </tr>
@@ -56,5 +56,24 @@
 </table>
 
 <div th:replace="~{fragments/footer}"></div>
+
+<script>
+    function eliminarMascotaConfirmacion(id) {
+        Swal.fire({
+            title: '¿Desea eliminar la mascota seleccionada?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.href = '/maxcota/eliminarMascota/' + id;
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
