@@ -27,6 +27,7 @@ public class SecuriyConfiguration {
                         .requestMatchers("/", "/registro").permitAll()
                         .requestMatchers(toH2Console()).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/gestorRoles")).hasAuthority("ROL_ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher("/actualizarRolUsuario")).hasAuthority("ROL_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer

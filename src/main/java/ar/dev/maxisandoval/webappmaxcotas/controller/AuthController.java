@@ -35,10 +35,4 @@ public class AuthController {
         customUserDetailsService.guardarUsuario(usuario);
         return "redirect:/login";
     }
-
-    @GetMapping("/gestorRoles")
-    public String gestorRoles(Model model) {
-        model.addAttribute("usuarios", customUserDetailsService.listarUsuariosRegistrados());
-        return "gestorRoles";
-    }
 }

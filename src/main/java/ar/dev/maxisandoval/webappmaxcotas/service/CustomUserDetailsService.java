@@ -12,6 +12,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -39,8 +40,27 @@ public class CustomUserDetailsService implements UserDetailsService {
         return usuarioRepository.save(usuario);
     }
 
+    public Usuario actualizarRolUsuario(Long id, String nuevoRol) {
+        Usuario usuario = obtenerUsuarioPorId(id);
+
+        if (usuario == null) {
+            throw new UsernameNotFoundException("Usuario no encontrado: "+id);
+        }
+
+        usuario.setRol(nuevoRol);
+        return usuarioRepository.save(usuario);
+    }
+
+    public void eliminarUsuario(Long id){
+        usuarioRepository.deleteById(id);
+    }
+
     public List<Usuario> listarUsuariosRegistrados() {
         return usuarioRepository.findAll();
+    }
+
+    public Usuario obtenerUsuarioPorId(Long id) {
+        return usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("No se encontró el usuario: "+id));
     }
 
     public PasswordEncoder passwordEncoder() {

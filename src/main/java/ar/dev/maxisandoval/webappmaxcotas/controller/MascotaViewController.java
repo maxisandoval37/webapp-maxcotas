@@ -49,7 +49,7 @@ public class MascotaViewController {
         return "mascotas";
     }
 
-    private void mostrarRolesUsuarioActual (Authentication authentication){
+    private void mostrarRolesUsuarioActual(Authentication authentication) {
         for (GrantedAuthority authority : authentication.getAuthorities()) {
             String rol = authority.getAuthority();
             log.info("Rol actual: "+rol);
