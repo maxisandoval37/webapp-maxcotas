@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/headerNoLogin}"></head>
+<body class="container mt-5">
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">Iniciar Sesión</h2>
+                <form th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <label for="username">Username: </label>
+                        <input type="text" id="username" name="username" autofocus="autofocus" class="form-control" required/>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="password">Password: </label>
+                        <input type="password" id="password" name="password" class="form-control" required/>
+                    </div>
+                    <br>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                    </div>
+                </form>
+
+                <br>
+                <p>¿No tenes cuenta? <a th:href="@{/registro}">Registrate!</a></p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

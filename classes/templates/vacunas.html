@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{fragments/header}"></head>
+<body class="container mt-5">
+
+<h2>Lista de Vacunas Disponibles</h2>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Fecha Vencimiento</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Aquí iteramos sobre la lista de vacunas y mostramos cada vacuna -->
+    <tr th:each="vacuna : ${vacunas}">
+        <td th:text="${vacuna.id}"></td>
+        <td th:text="${vacuna.nombre}"></td>
+        <td th:text="${vacuna.fechaVencimiento}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- @{ toma el contexto actual-->
+<a th:href="@{/mascotas}" class="btn btn-secondary">Ver Lista de Mascotas</a>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

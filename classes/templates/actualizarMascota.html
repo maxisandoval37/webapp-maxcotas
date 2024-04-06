@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{fragments/header}"></head>
+<body class="container mt-5">
+
+<h2 class="mb-4">Actualizar Mascota</h2>
+
+<form th:action="@{/actualizarMascota/{id}(id=${mascota.id})}" method="post">
+    <input type="hidden" name="_method" value="put">
+
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" th:value="${mascota.nombre}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="especie">Especie:</label>
+        <input type="text" class="form-control" id="especie" name="especie" th:value="${mascota.especie}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" th:value="${mascota.fechaNacimiento}" min="0" max="100" required>
+    </div>
+
+    <div class="form-group">
+        <label for="sexo">Sexo:</label>
+        <select class="form-control" id="sexo" name="sexo" required>
+            <option value="Hembra" th:selected="${mascota.sexo == 'Hembra'}">Hembra</option>
+            <option value="Macho" th:selected="${mascota.sexo == 'Macho'}">Macho</option>
+        </select>
+    </div>
+
+    <!-- Lista desplegable para seleccionar el veterinario -->
+    <div class="form-group">
+        <label for="idVeterinario">Veterinario:</label>
+        <select class="form-control" id="idVeterinario" name="idVeterinario" required>
+            <option th:each="usuario : ${usuariosConVete}" th:value="${usuario.veterinario.id}" th:text="${usuario.nombre +' '+ usuario.apellido}" th:selected="${usuario.veterinario.id eq mascota.veterinario.id}"></option>
+        </select>
+    </div>
+
+    <!-- Lista desplegable para seleccionar las vacunas-->
+    <div class="form-group">
+        <label for="idVacunas">Vacunas:</label>
+        <select class="form-control" id="idVacunas" name="idVacunas" multiple>
+            <option th:each="vacuna : ${vacunas}" th:value="${vacuna.id}" th:text="${vacuna.nombre}" th:selected="${mascota.vacunasAplicadas != null and mascota.vacunasAplicadas.contains(vacuna)}"></option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Actualizar Mascota</button>
+</form>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

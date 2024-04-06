@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{fragments/header}"></head>
+<body class="container mt-5">
+
+<h2>Agregar Nueva Vacuna</h2>
+
+<form th:action="@{/guardarVacuna}" method="post" class="form">
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fechaVencimiento">Fecha de Vencimiento:</label>
+        <input type="date" id="fechaVencimiento" name="fechaVencimiento" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar Vacuna</button>
+</form>
+
+<hr>
+
+<a th:href="@{/vacunas}" class="btn btn-secondary">Ver Lista de Vacunas</a>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

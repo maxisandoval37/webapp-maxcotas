@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:insert="~{fragments/header}"></head>
+<body class="container mt-5">
+
+    <h2 class="mb-4">Panel - Gestor Roles (Solo <b>ADMIN</b>)</h2>
+
+    <table class="table table-bordered">
+
+        USUARIO AUTENTICADO:
+        <div sec:authentication="principal.username"></div>
+        <br>
+        ROLES DEL USUARIO AUTENTICADO:
+        <div sec:authentication="principal.authorities"></div>
+        <br>
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Rol</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email Veterinario</th>
+            <th sec:authorize="hasAuthority('ROL_ADMIN')">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="usuario : ${usuarios}">
+            <td th:text="${usuario.id}"></td>
+            <td th:text="${usuario.username}"></td>
+            <td th:text="${usuario.rol}"></td>
+            <td th:text="${usuario.nombre}"></td>
+            <td th:text="${usuario.apellido}"></td>
+            <td th:text="${usuario.veterinario?.email}"></td><!--el ? ya que puede llegar nulo-->
+
+            <!-- Botones de eliminar y actualizar usuario -->
+            <td sec:authorize="hasAuthority('ROL_ADMIN')">
+                <button th:onclick="'eliminarUsuarioConfirmacion(\'' + ${usuario.id} + '\');'" class="btn btn-danger">Eliminar</button>
+                <a th:href="@{/actualizarRolUsuario/{id}(id=${usuario.id})}" class="btn btn-warning">Actualizar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function eliminarUsuarioConfirmacion(id) {
+            Swal.fire({
+                title: '¿Desea eliminar el usuario seleccionado?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = '/maxcota/eliminarUsuario/' + id;
+                }
+            });
+        }
+    </script>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>

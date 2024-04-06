@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{fragments/header}"></head>
+<body class="container mt-5">
+
+<h2>Agregar Mascota</h2>
+
+<form th:action="@{/guardarMascota}" method="post" class="form">
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="especie">Especie:</label>
+        <input type="text" id="especie" name="especie" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="sexo">Sexo:</label>
+        <select class="form-control" id="sexo" name="sexo" required>
+            <option value="Hembra" th:selected="${mascota.sexo == 'Hembra'}">Hembra</option>
+            <option value="Macho" th:selected="${mascota.sexo == 'Macho'}">Macho</option>
+        </select>
+    </div>
+
+    <!-- Lista desplegable para seleccionar el veterinario -->
+    <div class="form-group">
+        <label for="idVeterinario">Veterinario:</label>
+        <select class="form-control" id="idVeterinario" name="idVeterinario" required>
+            <option th:each="usuario : ${usuariosConVete}" th:value="${usuario.veterinario.id}" th:text="${usuario.nombre +' '+ usuario.apellido}"></option>
+        </select>
+    </div>
+
+    <!-- Lista desplegable para seleccionar las vacunas-->
+    <div class="form-group">
+        <label for="vacunas">Vacunas:</label>
+        <select id="vacunas" name="idVacunas" class="form-control" multiple>
+            <option th:each="vacuna : ${vacunas}" th:value="${vacuna.id}" th:text="${vacuna.nombre}"></option>
+        </select>
+    </div>
+
+    <br>
+
+    <button type="submit" class="btn btn-primary">Guardar Mascota</button>
+</form>
+
+<hr>
+
+<!-- Enlace para regresar a la lista de mascotas -->
+<a th:href="@{/mascotas}" class="btn btn-secondary">Ver Lista de Mascotas</a>
+
+<div th:replace="~{fragments/footer}"></div>
+</body>
+</html>
