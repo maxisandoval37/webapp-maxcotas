@@ -52,6 +52,17 @@ public class CustomUserDetailsService implements UserDetailsService {
         return usuarioRepository.save(usuario);
     }
 
+    public Usuario actualizarRolUsuarioVeterinario(Long id, Veterinario veterinario) {
+        Usuario usuario = obtenerUsuarioPorId(id);
+
+        if (usuario == null) {
+            throw new UsernameNotFoundException("Usuario no encontrado: "+id);
+        }
+
+        usuario.setVeterinario(veterinario);
+        return usuarioRepository.save(usuario);
+    }
+
     public void eliminarUsuario(Long id){
         //TODO eliminar vete
         usuarioRepository.deleteById(id);

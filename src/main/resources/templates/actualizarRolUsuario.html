@@ -15,17 +15,52 @@
 
     <div class="form-group">
         <label for="rol">Rol:</label>
-        <select class="form-control" id="rol" name="rol" required>
+        <select class="form-control" id="rol" name="rol" required onchange="toggleInputs()">
             <option value="ROL_ADMIN" th:selected="${usuario.rol == 'ROL_ADMIN'}">ROL_ADMIN</option>
-            <option value="ROL_ADMIN" th:selected="${usuario.rol == 'ROL_LECTURA'}">ROL_LECTURA</option>
+            <option value="ROL_LECTURA" th:selected="${usuario.rol == 'ROL_LECTURA'}">ROL_LECTURA</option>
             <option value="ROL_VETERINARIO" th:selected="${usuario.rol == 'ROL_VETERINARIO'}">ROL_VETERINARIO</option>
         </select>
+    </div>
+
+    <!-- Inputs adicionales para ROL_VETERINARIO -->
+    <div class="form-group" id="matriculaGroup" style="display: none;">
+        <label for="matricula">Matrícula:</label>
+        <input type="text" class="form-control" id="matricula" name="matricula" required>
+    </div>
+    <div class="form-group" id="emailGroup" style="display: none;">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
     </div>
 
     <br>
 
     <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
 </form>
+
+<!-- Script para mostrar/ocultar inputs adicionales cuando se selecciona ROL_VETERINARIO -->
+<script th:inline="javascript">
+    function toggleInputs() {
+        let rol = document.getElementById("rol").value;
+        let matriculaGroup = document.getElementById("matriculaGroup");
+        let emailGroup = document.getElementById("emailGroup");
+
+        if (rol === "ROL_VETERINARIO") {
+            matriculaGroup.style.display = "block";
+            emailGroup.style.display = "block";
+            document.getElementById("matricula").required = true;
+            document.getElementById("email").required = true;
+        } else {
+            matriculaGroup.style.display = "none";
+            emailGroup.style.display = "none";
+            document.getElementById("matricula").required = false;
+            document.getElementById("email").required = false;
+        }
+    }
+
+    window.onload = function() {// Verificar el rol seleccionado al cargar la página
+        toggleInputs();
+    }
+</script>
 
 <div th:replace="~{fragments/footer}"></div>
 </body>

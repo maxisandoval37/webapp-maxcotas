@@ -1,8 +1,9 @@
 package ar.dev.maxisandoval.webappmaxcotas.controller;
 
-import ar.dev.maxisandoval.webappmaxcotas.model.Mascota;
 import ar.dev.maxisandoval.webappmaxcotas.model.Usuario;
+import ar.dev.maxisandoval.webappmaxcotas.model.Veterinario;
 import ar.dev.maxisandoval.webappmaxcotas.service.CustomUserDetailsService;
+import ar.dev.maxisandoval.webappmaxcotas.service.VeterinarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PanelAdminController {
 
     private final CustomUserDetailsService customUserDetailsService;
+    private final VeterinarioService veterinarioService;
 
     @GetMapping("/gestorRoles")
     public String gestorRoles(Model model) {
@@ -32,8 +34,19 @@ public class PanelAdminController {
     }
 
     @PostMapping("/actualizarRolUsuario/{id}")
-    public String actualizarRolUsuario(@PathVariable Long id, @RequestParam String rol) {
-        customUserDetailsService.actualizarRolUsuario(id, rol);
+    public String actualizarRolUsuario(@PathVariable Long id, @RequestParam(required = false) String rol, @RequestParam(required = false) String matricula, @RequestParam(required = false) String email) {
+        if (rol.equals("ROL_VETERINARIO") && matricula != null && email != null) {
+
+            Veterinario veterinarioNuevo = new Veterinario();
+            veterinarioNuevo.setMatricula(matricula);
+            veterinarioNuevo.setEmail(email);
+            veterinarioNuevo.setUsuario(customUserDetailsService.obtenerUsuarioPorId(id));
+
+            Veterinario veterinarioGuardado = veterinarioService.guardarVeterinario(veterinarioNuevo);
+            customUserDetailsService.actualizarRolUsuarioVeterinario(id, veterinarioGuardado);
+        } else {
+            customUserDetailsService.actualizarRolUsuario(id, rol);
+        }
         return "redirect:/gestorRoles";
     }
 
@@ -42,6 +55,4 @@ public class PanelAdminController {
         customUserDetailsService.eliminarUsuario(id);
         return "redirect:/gestorRoles";
     }
-
-    //TODO En caso de que el rol sea veterinario, solicitar cargar la matricula y el email para insertar nuevo vete
 }
