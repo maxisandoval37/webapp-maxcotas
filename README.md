@@ -8,6 +8,7 @@ Este proyecto es una aplicación web Java desarrollada con el framework **Spring
 
 - **Java 17**
 - **Maven**
+- **Continuous Integration (github workflows)**
 - **Spring Boot Versión 3.2.2** 
 - **Spring Boot Starter Web**
 - **Spring Boot Starter Data JPA:** Proporciona soporte para Java Persistence API (JPA) para el acceso a datos.
