@@ -36,8 +36,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public Usuario guardarUsuario(Usuario usuario) {
+        Usuario usuarioExistente = usuarioRepository.findByUsername(usuario.getUsername());
+        if (usuarioExistente != null) {
+            throw new RuntimeException("El usuario ya se encuentra registrado!");
+        }
+
         usuario.setContrasena(passwordEncoder().encode(usuario.getContrasena()));
         usuario.setRol("ROLE_LECTURA");
+
         return usuarioRepository.save(usuario);
     }
 
