@@ -42,4 +42,6 @@ public class PanelAdminController {
         customUserDetailsService.eliminarUsuario(id);
         return "redirect:/gestorRoles";
     }
+
+    //TODO En caso de que el rol sea veterinario, solicitar cargar la matricula y el email para insertar nuevo vete
 }
