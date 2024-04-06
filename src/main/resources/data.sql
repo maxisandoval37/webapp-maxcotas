@@ -1,7 +1,7 @@
 -- Inserción de Veterinarios de ejemplo:
 INSERT INTO veterinario (matricula, email) VALUES ('123ABC', 'drjuan@example.com');
 INSERT INTO veterinario (matricula, email) VALUES ('111AAA', 'drpedro@example.com');
-INSERT INTO veterinario (matricula, email) VALUES ('999ZZZ', 'drjosefa@example.com');
+INSERT INTO veterinario (matricula, email) VALUES ('999ZZZ', 'drajosefa@example.com');
 INSERT INTO veterinario (matricula, email) VALUES ('ASD423', 'drvillalba@example.com');
 
 -- Inserción de vacunas de ejemplo:

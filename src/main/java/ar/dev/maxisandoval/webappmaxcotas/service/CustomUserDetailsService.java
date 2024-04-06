@@ -53,6 +53,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public void eliminarUsuario(Long id){
+        //TODO eliminar vete
         usuarioRepository.deleteById(id);
     }
 

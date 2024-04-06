@@ -21,7 +21,7 @@
             <th>Rol</th>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Veterinario</th>
+            <th>Email Veterinario</th>
             <th sec:authorize="hasAuthority('ROL_ADMIN')">Acciones</th>
         </tr>
         </thead>
@@ -32,7 +32,7 @@
             <td th:text="${usuario.rol}"></td>
             <td th:text="${usuario.nombre}"></td>
             <td th:text="${usuario.apellido}"></td>
-            <td th:text="${usuario.veterinario?.nombre}"></td><!--el ? ya que puede llegar nulo-->
+            <td th:text="${usuario.veterinario?.email}"></td><!--el ? ya que puede llegar nulo-->
 
             <!-- Botones de eliminar y actualizar usuario -->
             <td sec:authorize="hasAuthority('ROL_ADMIN')">

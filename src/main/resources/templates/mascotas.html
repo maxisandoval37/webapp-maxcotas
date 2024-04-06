@@ -10,6 +10,7 @@
     <a th:href="@{/agregarVeterinario}" class="btn btn-primary">Agregar Veterinario</a>
     <a th:href="@{/agregarVacuna}" class="btn btn-primary">Agregar Vacunas</a>
     <a th:href="@{/agregarMascota}" class="btn btn-primary">Agregar Mascota</a>
+    <a sec:authorize="hasAuthority('ROL_ADMIN')" th:href="@{/gestorRoles}" class="btn btn-danger">Gestionar Roles (Panel ADMIN)</a>
 </div>
 
 <table class="table table-bordered">
