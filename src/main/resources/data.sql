@@ -1,8 +1,8 @@
 -- Inserción de Veterinarios de ejemplo:
-INSERT INTO veterinario (nombre, matricula, email) VALUES ('Dr. Diego', '123ABC', 'drdiego@example.com');
-INSERT INTO veterinario (nombre, matricula, email) VALUES ('Dr. Juan', '111AAA', 'drjuan@example.com');
-INSERT INTO veterinario (nombre, matricula, email) VALUES ('Dr. Sergio', '999ZZZ', 'drsergio@example.com');
-INSERT INTO veterinario (nombre, matricula, email) VALUES ('Dr. Maxi', 'ASD423', 'drmaxi@example.com');
+INSERT INTO veterinario (matricula, email) VALUES ('123ABC', 'drjuan@example.com');
+INSERT INTO veterinario (matricula, email) VALUES ('111AAA', 'drpedro@example.com');
+INSERT INTO veterinario (matricula, email) VALUES ('999ZZZ', 'drjosefa@example.com');
+INSERT INTO veterinario (matricula, email) VALUES ('ASD423', 'drvillalba@example.com');
 
 -- Inserción de vacunas de ejemplo:
 INSERT INTO vacuna (nombre, fecha_vencimiento) VALUES ('Vacuna contra la rabia', '2026-01-10');
@@ -30,4 +30,8 @@ INSERT INTO mascota_vacuna (mascota_id, vacuna_id) VALUES (2,4);
 INSERT INTO Usuario (username, contrasena, rol, nombre, apellido) VALUES ('admin', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq', 'ROL_ADMIN', 'José', 'Pérez');
 INSERT INTO Usuario (username, contrasena, rol, nombre, apellido) VALUES ('user', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq','ROL_LECTURA', 'María', 'Gómez');
 INSERT INTO Usuario (username, contrasena, rol, nombre, apellido) VALUES ('lectura', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq','ROL_LECTURA', 'Carlos', 'López');
-INSERT INTO Usuario (username, contrasena, rol, nombre, apellido, veterinario_id) VALUES ('veterinario_juan', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq','ROL_VETERINARIO', 'Juan', 'Pérez', 3);
+
+INSERT INTO Usuario (username, contrasena, rol, nombre, apellido, veterinario_id) VALUES ('veterinario_juan', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq','ROL_VETERINARIO', 'Juan', 'Pérez', 1);
+INSERT INTO Usuario (username, contrasena, rol, nombre, apellido, veterinario_id) VALUES ('veterinario_pedro', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq','ROL_VETERINARIO', 'Pedro', 'González', 2);
+INSERT INTO Usuario (username, contrasena, rol, nombre, apellido, veterinario_id) VALUES ('veterinario_josefa', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq','ROL_VETERINARIO', 'Josefa', 'Diaz', 3);
+INSERT INTO Usuario (username, contrasena, rol, nombre, apellido, veterinario_id) VALUES ('veterinario_sergio', '{bcrypt}$2a$12$8L95nO.z7qMQdW3YdXp9ZOqrn.2AWYQVIPHtqGE9U2tLjNWZVLWyq','ROL_VETERINARIO', 'Sergio', 'Villalba', 4);

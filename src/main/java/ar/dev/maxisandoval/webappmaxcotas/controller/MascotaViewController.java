@@ -3,12 +3,12 @@ package ar.dev.maxisandoval.webappmaxcotas.controller;
 import ar.dev.maxisandoval.webappmaxcotas.model.Mascota;
 import ar.dev.maxisandoval.webappmaxcotas.model.Veterinario;
 import ar.dev.maxisandoval.webappmaxcotas.repository.UsuarioRepository;
+import ar.dev.maxisandoval.webappmaxcotas.service.CustomUserDetailsService;
 import ar.dev.maxisandoval.webappmaxcotas.service.MascotaService;
 import ar.dev.maxisandoval.webappmaxcotas.service.VacunaService;
 import ar.dev.maxisandoval.webappmaxcotas.service.VeterinarioService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +26,7 @@ public class MascotaViewController {
     private final VeterinarioService veterinarioService;
     private final VacunaService vacunaService;
     private final UsuarioRepository usuarioRepository;
+    private final CustomUserDetailsService customUserDetailsService;
 
     @GetMapping("/mascotas")
     public String listarMascotas(Model model) {
@@ -46,6 +47,7 @@ public class MascotaViewController {
         }
 
         model.addAttribute("mascotas", mascotas);
+        model.addAttribute("userService", customUserDetailsService);//para obtener el nombre del vete
         return "mascotas";
     }
 
@@ -60,6 +62,7 @@ public class MascotaViewController {
     public String mostrarFormularioAgregarMascota(Model model) {
         model.addAttribute("veterinarios", veterinarioService.listarVeterinarios());
         model.addAttribute("vacunas", vacunaService.listarVacunas());
+        model.addAttribute("usuariosConVete", customUserDetailsService.listarUsuariosRegistradosConVeterinarios());//para obtener los vete disponibles
         model.addAttribute("mascota", new Mascota());
 
         return "agregarMascota";
@@ -75,8 +78,8 @@ public class MascotaViewController {
     public String mostrarFormularioActualizarMascota(@PathVariable Long id, Model model){
         Mascota mascota = mascotaService.obtenerMascotaPorId(id);
         model.addAttribute("mascota", mascota);
-        model.addAttribute("veterinarios", veterinarioService.listarVeterinarios());
         model.addAttribute("vacunas", vacunaService.listarVacunas());
+        model.addAttribute("usuariosConVete", customUserDetailsService.listarUsuariosRegistradosConVeterinarios());//para obtener los vete disponibles
 
         return "actualizarMascota";
     }

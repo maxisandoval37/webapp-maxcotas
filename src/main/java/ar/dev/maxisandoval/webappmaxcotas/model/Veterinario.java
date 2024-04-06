@@ -19,9 +19,6 @@ public class Veterinario {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NotBlank(message = "El nombre no puede estar en blanco")
-    private String nombre;
-
     @NotBlank(message = "La matricula no puede estar en blanco")
     private String matricula;
 

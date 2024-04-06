@@ -21,7 +21,6 @@ class VeterinarioServiceTest {
     @BeforeEach
     void setup () {
         Veterinario veterinario = new Veterinario();
-        veterinario.setNombre("Dr. Juan Diaz");
         veterinario.setMatricula("ASD123");
         veterinario.setEmail("drjuandiaz@example.com");
 
@@ -31,7 +30,6 @@ class VeterinarioServiceTest {
     @Test
     void testGuardarVeterinario() {
         assertNotNull(veterinarioGuardado.getId());
-        assertEquals("Dr. Juan Diaz", veterinarioGuardado.getNombre());
         assertEquals("ASD123", veterinarioGuardado.getMatricula());
         assertEquals("drjuandiaz@example.com", veterinarioGuardado.getEmail());
     }

@@ -10,6 +10,7 @@
     <tr>
         <th>ID</th>
         <th>Nombre</th>
+        <th>Apellido</th>
         <th>Matrícula</th>
         <th>Email</th>
         <th>Mascotas</th>
@@ -18,7 +19,8 @@
     <tbody>
     <tr th:each="veterinario : ${veterinarios}">
         <td th:text="${veterinario.id}"></td>
-        <td th:text="${veterinario.nombre}"></td>
+        <td th:text="${userService.obtenerUsuarioPorVeterinario(veterinario)?.nombre ?: 'Nombre no disponible'}"></td>
+        <td th:text="${userService.obtenerUsuarioPorVeterinario(veterinario)?.apellido ?: 'Apellido no disponible'}"></td>
         <td th:text="${veterinario.matricula}"></td>
         <td th:text="${veterinario.email}"></td>
         <td>

@@ -30,7 +30,6 @@ class MascotaServiceTest {
     @BeforeEach
     void setup() {
         Veterinario veterinario = new Veterinario();
-        veterinario.setNombre("Dr. Juan Pérez");
         veterinario.setMatricula("123ABC");
         veterinario.setEmail("juan.perez@example.com");
 

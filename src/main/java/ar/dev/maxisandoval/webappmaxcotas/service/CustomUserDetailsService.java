@@ -1,6 +1,7 @@
 package ar.dev.maxisandoval.webappmaxcotas.service;
 
 import ar.dev.maxisandoval.webappmaxcotas.model.Usuario;
+import ar.dev.maxisandoval.webappmaxcotas.model.Veterinario;
 import ar.dev.maxisandoval.webappmaxcotas.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -59,8 +60,16 @@ public class CustomUserDetailsService implements UserDetailsService {
         return usuarioRepository.findAll();
     }
 
+    public List<Usuario> listarUsuariosRegistradosConVeterinarios() {
+        return usuarioRepository.findByVeterinarioIsNotNull();
+    }
+
     public Usuario obtenerUsuarioPorId(Long id) {
         return usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("No se encontró el usuario: "+id));
+    }
+
+    public Usuario obtenerUsuarioPorVeterinario(Veterinario veterinario) {
+        return usuarioRepository.findByVeterinario(veterinario);
     }
 
     public PasswordEncoder passwordEncoder() {

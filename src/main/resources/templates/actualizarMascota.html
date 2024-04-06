@@ -34,8 +34,8 @@
     <!-- Lista desplegable para seleccionar el veterinario -->
     <div class="form-group">
         <label for="idVeterinario">Veterinario:</label>
-        <select class="form-control" id="idVeterinario" name="idVeterinario">
-            <option th:each="veterinario : ${veterinarios}" th:value="${veterinario.id}" th:text="${veterinario.nombre}" th:selected="${veterinario.id eq mascota.veterinario.id}"></option>
+        <select class="form-control" id="idVeterinario" name="idVeterinario" required>
+            <option th:each="usuario : ${usuariosConVete}" th:value="${usuario.veterinario.id}" th:text="${usuario.nombre +' '+ usuario.apellido}" th:selected="${usuario.veterinario.id eq mascota.veterinario.id}"></option>
         </select>
     </div>
 

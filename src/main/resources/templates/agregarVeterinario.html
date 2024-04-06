@@ -7,11 +7,6 @@
 
 <form th:action="@{/guardarVeterinario}" method="post" th:object="${veterinario}" class="form">
     <div class="form-group">
-        <label for="nombre">Nombre:</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" required>
-    </div>
-
-    <div class="form-group">
         <label for="matricula">Matrícula:</label>
         <input type="text" class="form-control" id="matricula" name="matricula" th:field="*{matricula}" required>
     </div>

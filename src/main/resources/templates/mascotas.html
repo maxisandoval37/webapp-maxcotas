@@ -40,7 +40,8 @@
         <td th:text="${mascota.especie}"></td>
         <td th:text="${mascota.fechaNacimiento}"></td>
         <td th:text="${mascota.sexo}"></td>
-        <td th:text="${mascota.veterinario.nombre}"></td>
+        <td th:text="${userService.obtenerUsuarioPorVeterinario(mascota.veterinario).nombre + ' ' +
+            userService.obtenerUsuarioPorVeterinario(mascota.veterinario).apellido}"></td>
         <td>
             <ul>
                 <li th:each="vacuna : ${mascota.vacunasAplicadas}" th:text="${vacuna.nombre}"></li>
