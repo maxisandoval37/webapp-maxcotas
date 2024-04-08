@@ -26,8 +26,7 @@ public class Veterinario {
     @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$", message = "El formato del email no es válido")
     private String email;
 
-    //si borro al veterinario, tambien borro a las mascotas atendidas (caso practico, excede realidad)
-    @OneToMany (mappedBy = "veterinario", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany (mappedBy = "veterinario", fetch = FetchType.EAGER)//TODO revisar para desvincular las mascotas al momento de la eliminacion de usuario/veterinario
     private List<Mascota> mascotasAtendidas;
 
     @OneToOne(mappedBy = "veterinario", cascade = CascadeType.ALL)

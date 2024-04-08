@@ -120,9 +120,7 @@ class MascotaServiceTest {
 
         mascotaService.eliminarMascota(mascotaId);
 
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            mascotaService.obtenerMascotaPorId(mascotaId);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> mascotaService.obtenerMascotaPorId(mascotaId));
 
         String expectedMessage = "No se encontró la mascota: " + mascotaId;
         String actualMessage = exception.getMessage();
