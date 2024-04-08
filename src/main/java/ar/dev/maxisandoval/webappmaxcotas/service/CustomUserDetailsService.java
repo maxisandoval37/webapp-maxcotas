@@ -4,6 +4,7 @@ import ar.dev.maxisandoval.webappmaxcotas.model.Usuario;
 import ar.dev.maxisandoval.webappmaxcotas.model.Veterinario;
 import ar.dev.maxisandoval.webappmaxcotas.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,7 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public Usuario guardarUsuario(Usuario usuario) {
         Usuario usuarioExistente = usuarioRepository.findByUsername(usuario.getUsername());
         if (usuarioExistente != null) {
-            throw new RuntimeException("El usuario ya se encuentra registrado!");
+            throw new DataIntegrityViolationException("El usuario ya se encuentra registrado!");
         }
 
         usuario.setContrasena(passwordEncoder().encode(usuario.getContrasena()));
