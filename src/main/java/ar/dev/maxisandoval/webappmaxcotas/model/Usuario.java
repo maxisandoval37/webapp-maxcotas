@@ -20,7 +20,8 @@ public class Usuario {
     private String nombre;
     private String apellido;
 
-    @OneToOne
+    //si borro al usuario, tambien borro al veterinario
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "veterinario_id")
     private Veterinario veterinario;
 }

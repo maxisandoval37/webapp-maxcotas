@@ -3,6 +3,7 @@ package ar.dev.maxisandoval.webappmaxcotas.service;
 import ar.dev.maxisandoval.webappmaxcotas.model.Usuario;
 import ar.dev.maxisandoval.webappmaxcotas.model.Veterinario;
 import ar.dev.maxisandoval.webappmaxcotas.repository.UsuarioRepository;
+import ar.dev.maxisandoval.webappmaxcotas.repository.VeterinarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,6 +21,7 @@ import java.util.List;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UsuarioRepository usuarioRepository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -70,7 +72,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public void eliminarUsuario(Long id){
-        //TODO eliminar vete
         usuarioRepository.deleteById(id);
     }
 
