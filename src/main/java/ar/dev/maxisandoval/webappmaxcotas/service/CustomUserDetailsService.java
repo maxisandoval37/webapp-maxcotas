@@ -13,7 +13,6 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -26,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         Usuario usuario = usuarioRepository.findByUsername(username);
 
         if (usuario == null) {
-            throw new UsernameNotFoundException("Usuario no encontrado: ".concat(username));
+            throw new UsernameNotFoundException("loadUserByUsername: Usuario no encontrado: ".concat(username));
         }
 
         return User.withUsername(usuario.getUsername())
@@ -51,7 +50,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         Usuario usuario = obtenerUsuarioPorId(id);
 
         if (usuario == null) {
-            throw new UsernameNotFoundException("Usuario no encontrado: "+id);
+            throw new UsernameNotFoundException("actualizarRolUsuario: Usuario no encontrado: "+id);
         }
 
         usuario.setRol(nuevoRol);
@@ -62,7 +61,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         Usuario usuario = obtenerUsuarioPorId(id);
 
         if (usuario == null) {
-            throw new UsernameNotFoundException("Usuario no encontrado: "+id);
+            throw new UsernameNotFoundException("actualizarRolUsuarioVeterinario: Usuario no encontrado: "+id);
         }
 
         usuario.setVeterinario(veterinario);
