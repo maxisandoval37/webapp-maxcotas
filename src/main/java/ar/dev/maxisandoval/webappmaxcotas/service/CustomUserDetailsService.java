@@ -2,8 +2,9 @@ package ar.dev.maxisandoval.webappmaxcotas.service;
 
 import ar.dev.maxisandoval.webappmaxcotas.model.Usuario;
 import ar.dev.maxisandoval.webappmaxcotas.model.Veterinario;
+import ar.dev.maxisandoval.webappmaxcotas.repository.MascotaRepository;
 import ar.dev.maxisandoval.webappmaxcotas.repository.UsuarioRepository;
-import ar.dev.maxisandoval.webappmaxcotas.repository.VeterinarioRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,12 +16,14 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UsuarioRepository usuarioRepository;
+    private final MascotaRepository mascotaRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -71,7 +74,16 @@ public class CustomUserDetailsService implements UserDetailsService {
         return usuarioRepository.save(usuario);
     }
 
+    @Transactional
     public void eliminarUsuario(Long id){
+        Optional<Usuario> usuarioActual = usuarioRepository.findById(id);
+
+        //Borramos las mascotas asociadas que tiene el veterinario (caso practico)
+        if (usuarioActual.isPresent() && usuarioActual.get().getVeterinario() != null){
+            Veterinario veterinario = usuarioActual.get().getVeterinario();
+            mascotaRepository.deleteByVeterinario(veterinario);
+        }
+
         usuarioRepository.deleteById(id);
     }
 

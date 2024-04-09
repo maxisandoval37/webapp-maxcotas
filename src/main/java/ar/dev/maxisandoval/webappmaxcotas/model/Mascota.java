@@ -34,6 +34,7 @@ public class Mascota {
 
     @ManyToOne
     @JoinColumn(name = "veterinario_id")
+    @NotNull(message = "El veterinario no puede estar en blanco")
     @ToString.Exclude
     private Veterinario veterinario;
 
