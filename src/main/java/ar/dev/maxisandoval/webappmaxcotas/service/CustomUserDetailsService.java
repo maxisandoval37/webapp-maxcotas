@@ -7,7 +7,9 @@ import ar.dev.maxisandoval.webappmaxcotas.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -77,11 +79,21 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Transactional
     public void eliminarUsuario(Long id){
         Optional<Usuario> usuarioActual = usuarioRepository.findById(id);
+        String usernameActual = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        //Borramos las mascotas asociadas que tiene el veterinario (caso practico)
-        if (usuarioActual.isPresent() && usuarioActual.get().getVeterinario() != null){
-            Veterinario veterinario = usuarioActual.get().getVeterinario();
-            mascotaRepository.deleteByVeterinario(veterinario);
+        if (usuarioActual.isPresent()) {
+
+            //Sesion Activa: No permitimos eliminar el usuario que tiene la sesión actual abierta
+            if (usernameActual.equals(usuarioActual.get().getUsername())) {
+                throw new IllegalArgumentException("No se puede eliminar el usuario actualmente autenticado en la sesión!");
+            }
+
+            //Es veterinario: Borramos las mascotas asociadas que tiene el veterinario (caso practico)
+            if (usuarioActual.get().getVeterinario() != null){
+                Veterinario veterinario = usuarioActual.get().getVeterinario();
+                mascotaRepository.deleteByVeterinario(veterinario);
+            }
+
         }
 
         usuarioRepository.deleteById(id);
