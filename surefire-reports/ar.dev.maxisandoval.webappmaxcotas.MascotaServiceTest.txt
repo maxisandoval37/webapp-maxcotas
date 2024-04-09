@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ar.dev.maxisandoval.webappmaxcotas.MascotaServiceTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.144 s -- in ar.dev.maxisandoval.webappmaxcotas.MascotaServiceTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.166 s -- in ar.dev.maxisandoval.webappmaxcotas.MascotaServiceTest
