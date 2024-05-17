@@ -50,7 +50,7 @@ class VacunaServiceTest {
     }
 
     @Test
-    void testEliminarMascota() {
+    void testEliminarVacuna() {
         Long vacunaId = 1L;
 
         //Buscamos si existe la vacuna antes de eliminarla
