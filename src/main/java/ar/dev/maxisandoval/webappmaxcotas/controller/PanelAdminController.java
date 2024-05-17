@@ -51,7 +51,7 @@ public class PanelAdminController {
     }
 
     @GetMapping("/eliminarUsuario/{id}")
-    public String eliminarMascota(@PathVariable Long id){
+    public String eliminarUsuario(@PathVariable Long id){
         customUserDetailsService.eliminarUsuario(id);
         return "redirect:/gestorRoles";
     }
