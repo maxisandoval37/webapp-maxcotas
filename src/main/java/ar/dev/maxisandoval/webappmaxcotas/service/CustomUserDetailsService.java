@@ -27,6 +27,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final UsuarioRepository usuarioRepository;
     private final MascotaRepository mascotaRepository;
 
+    private final String ROL_LECTURA = "ROL_LECTURA";
+    private final String ROL_VETERINARIO = "ROL_VETERINARIO";
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -49,7 +52,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
 
         usuario.setContrasena(passwordEncoder().encode(usuario.getContrasena()));
-        usuario.setRol("ROL_LECTURA");
+        usuario.setRol(ROL_LECTURA);
 
         return usuarioRepository.save(usuario);
     }
@@ -72,6 +75,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("actualizarRolUsuarioVeterinario: Usuario no encontrado: "+id);
         }
 
+        usuario.setRol(ROL_VETERINARIO);
         usuario.setVeterinario(veterinario);
         return usuarioRepository.save(usuario);
     }
