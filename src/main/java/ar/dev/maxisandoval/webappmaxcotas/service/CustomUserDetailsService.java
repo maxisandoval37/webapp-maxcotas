@@ -49,7 +49,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
 
         usuario.setContrasena(passwordEncoder().encode(usuario.getContrasena()));
-        usuario.setRol("ROLE_LECTURA");
+        usuario.setRol("ROL_LECTURA");
 
         return usuarioRepository.save(usuario);
     }
