@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ar.dev.maxisandoval.webappmaxcotas.WebappMaxcotasApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.032 s -- in ar.dev.maxisandoval.webappmaxcotas.WebappMaxcotasApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.894 s -- in ar.dev.maxisandoval.webappmaxcotas.WebappMaxcotasApplicationTests
