@@ -39,6 +39,15 @@ El endpoint principal de la aplicación se encuentra en:
 
 `/maxcota/mascotas`
 
+## Live Demo
+
+### [Click Here! 🖱️](https://webapp-maxcotas.onrender.com/)
+
+#### Usuarios de prueba (pass: *user*):
+- admin
+- lectura
+- veterinario_juan
+
 ## Información Adicional
 Para cualquier información adicional o consultas: <maxisandoval98@gmail.com>
 
